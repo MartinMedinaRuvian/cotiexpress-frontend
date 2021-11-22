@@ -1,7 +1,7 @@
 <template>
     <div class="text-center">
-        <form @submit.prevent>
-
+        <div v-if="usuario.estado === '1'">
+            <form @submit.prevent>
             <div class="form group">
                 <label for="descripcion">Descripción:</label>
                 <input type="text" placeholder="Descripción" v-model="producto.descripcion" class="form-control">
@@ -43,10 +43,16 @@
         </form>
 
         <TablaProductos :productos="productos" />
+        </div>
+        <div v-if="usuario.estado === '2'">
+            <h3>Su cuenta se encuentra desactivada. Pongase en contacto con el Admin</h3>
+        </div>
+        
     </div>
 </template>
 <script>
 import TablaProductos from '@/components/productos/TablaProducto'
+import {mapGetters} from 'vuex'
 export default {
     data(){
         return{
@@ -61,6 +67,9 @@ export default {
     created(){
         this.verCategorias()
         this.verProductos()
+    },
+    computed:{
+        ...mapGetters(['usuario'])
     },
     methods:{
         subirArchivo(){
@@ -134,7 +143,7 @@ export default {
             }
         },
         verProductos(){
-            this.axios.get('productos')
+            this.axios.get('productos/filtro-vendedor' + this.usuario.codigo_vendedor)
             .then(respuesta=>{
                 console.log(respuesta.data)
                 this.productos = respuesta.data;

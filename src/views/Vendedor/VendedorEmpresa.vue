@@ -1,25 +1,15 @@
 <template>
     <div class="text-center">
         <Mensaje :mensaje="mensaje" />
-        <h4>Bienvenido {{ usuario === null ? '' : usuario.username }}</h4>
-        <p>Mi Perfil</p>
+        <h4 class="mb-4">Mi Empresa</h4>
         <div class="d-flex justify-content-center align-items-center container">
             <div class="row">
                 <form @submit.prevent="actualizar()" class="formulario">
                     <div class="form-group">
-                        <input type="text" placeholder="Nombres" class="form-control" v-model="persona.nombres" required>
+                        <input type="text" placeholder="Nombre" class="form-control" v-model="empresa.nombre" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" placeholder="Apellidos" class="form-control" v-model="persona.apellidos" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="number" placeholder="Identificacion" class="form-control" v-model="persona.identificacion" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="number" placeholder="Teléfono" class="form-control" v-model="persona.telefono">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Email" class="form-control" v-model="persona.email">
+                        <input type="text" placeholder="Direccion" class="form-control" v-model="empresa.direccion" required>
                     </div>
                     <div class="form-group">
                         <button class="btn btn-success" @click="actualizar()">Actualizar</button>
@@ -35,12 +25,12 @@ import { mapGetters } from 'vuex'
 export default {
     data(){
         return{
-            persona:{},
+            empresa:{},
             mensaje:{ver:false},
         }
     },
     created(){
-        this.verPersona()
+        this.verEmpresa()
     },
     computed:{
         ...mapGetters(['usuario'])
@@ -51,11 +41,11 @@ export default {
             this.mensaje.contenido = contenido
             this.mensaje.color = color
         },
-        verPersona(){
-            this.axios.get('personas/' + this.usuario.codigo)
+        verEmpresa(){
+            this.axios.get('empresas/filtro-codigo/' + this.usuario.codigo_empresa)
             .then(respuesta =>{
                 if(respuesta.status === 200){
-                  this.persona = respuesta.data
+                  this.empresa = respuesta.data
                 }
             })
             .catch((error)=>{
@@ -63,7 +53,7 @@ export default {
             })
         },
         actualizar(){
-            this.axios.put('personas/' + this.persona.codigo, this.persona)
+            this.axios.put('empresas/' + this.empresa.codigo, this.empresa)
             .then((respuesta)=>{
                 if(respuesta.status === 200){
                    this.crearMensaje(respuesta.data.mensaje, 'success')

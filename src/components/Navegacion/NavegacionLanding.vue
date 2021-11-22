@@ -1,6 +1,6 @@
 <template>
     <nav class="navbar fixed-top navbar-expand-md" id="navegacion">
-  <router-link data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand titulo" to="/"><span class="text-dark">So</span><span class="color-verde-principal">Mar</span></router-link>   
+  <router-link data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand titulo" to="/"><span class="text-dark">Coti</span><span class="color-verde-principal">Express</span></router-link>   
  
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="icon-Menu"></span>
@@ -18,7 +18,7 @@
       </li>
   
        <li class="nav-item ml-4">
-        <router-link id="btn-ingresar-salir" data-toggle="collapse" data-target=".navbar-collapse.show" to="/registro" class="btn btn-outline-success btn-sm btn-registro">Registrate</router-link> 
+        <router-link id="btn-ingresar-salir" data-toggle="collapse" data-target=".navbar-collapse.show" to="/pre-registro" class="btn btn-outline-success btn-sm btn-registro">Registrate</router-link> 
        </li>
 
       <li class="nav-item ml-4">

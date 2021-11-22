@@ -18,7 +18,11 @@ export default new Vuex.Store({
       const usuarioGuardar = {
         codigo: payload.codigo, 
         username: payload.username, 
-        tipo: payload.tipo
+        tipo: payload.tipo,
+        codigo_cliente: payload.codigo_cliente,
+        codigo_vendedor: payload.codigo_vendedor,
+        codigo_empresa: payload.codigo_empresa,
+        estado: payload.estado
       };
       commit('obtenerUsuario', usuarioGuardar);
       localStorage.setItem('usuario', JSON.stringify(usuarioGuardar));

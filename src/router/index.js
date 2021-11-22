@@ -22,41 +22,32 @@ const routes = [
     component: () => import('@/views/Usuario/UsuarioInicioSesion.vue')
   },
   {
-    path: '/registro',
-    name: 'Registro',
-    component: () => import('@/views/Usuario/UsuarioRegistro.vue')
+    path: '/pre-registro',
+    name: 'PreRegistro',
+    component: () => import('@/views/Usuario/UsuarioPreRegistro.vue')
   },
   {
-    path: '/persona-registro',
-    name: 'PersonaRegistro',
-    component: () => import('@/views/Persona/PersonaRegistro.vue'),
+    path: '/cliente-registro',
+    name: 'ClienteRegistro',
+    component: () => import('@/views/Cliente/ClienteRegistro.vue'),
     props:true
   },
   {
-    path: '/persona-perfil',
-    name: 'PersonaPerfil',
-    component: () => import('@/views/Persona/PersonaPerfil.vue'),
+    path: '/cliente-perfil',
+    name: 'ClientePerfil',
+    component: () => import('@/views/Cliente/ClientePerfil.vue'),
     meta:{requiereAutorizacion:true}
   },
   {
-    path: '/insumos',
-    name: 'Insumos',
-    component: () => import('@/views/Insumo/Insumo.vue'),
-    props:true,
-    meta:{requiereAutorizacion:true}
+    path: '/vendedor-registro',
+    name: 'VendedorRegistro',
+    component: () => import('@/views/Vendedor/VendedorRegistro.vue'),
+    props:true
   },
   {
-    path: '/insumos-eliminar',
-    name: 'InsumosEliminar',
-    component: () => import('@/views/Insumo/InsumoEliminar.vue'),
-    props:true,
-    meta:{requiereAutorizacion:true}
-  },
-  {
-    path: '/insumos-editar',
-    name: 'InsumosEditar',
-    component: () => import('@/views/Insumo/InsumoEditar.vue'),
-    props:true,
+    path: '/vendedor-perfil',
+    name: 'VendedorPerfil',
+    component: () => import('@/views/Vendedor/VendedorPerfil.vue'),
     meta:{requiereAutorizacion:true}
   },
   {
@@ -92,6 +83,35 @@ const routes = [
     name: 'ProductosEliminar',
     component: () => import('@/views/Producto/ProductoEliminar.vue'),
     props:true,
+    meta:{requiereAutorizacion:true}
+  },
+  {
+    path: '/vendedor-empresa',
+    name: 'VendedorEmpresa',
+    component: () => import('@/views/Vendedor/VendedorEmpresa.vue'),
+    meta:{requiereAutorizacion:true}
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: () => import('@/views/Admin/AdminRegistro.vue')
+  },
+  {
+    path: '/vendedores',
+    name: 'Vendedores',
+    component: () => import('@/views/Admin/Vendedores.vue'),
+    meta:{requiereAutorizacion:true}
+  },
+  {
+    path: '/clientes',
+    name: 'Clientes',
+    component: () => import('@/views/Admin/Clientes.vue'),
+    meta:{requiereAutorizacion:true}
+  },
+  {
+    path: '/catalogo',
+    name: 'Catalogo',
+    component: () => import('@/views/Cliente/ClienteCatalogo.vue'),
     meta:{requiereAutorizacion:true}
   }
 ]

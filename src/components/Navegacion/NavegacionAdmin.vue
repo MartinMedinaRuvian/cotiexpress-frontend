@@ -1,6 +1,6 @@
 <template>
     <nav class="navbar fixed-top navbar-expand-md" id="navegacion">
-  <router-link data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand titulo" to="/"><span class="text-dark">So</span><span class="color-verde-principal">Mar</span></router-link>   
+  <router-link data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand titulo" to="/"><span class="text-dark">Coti</span><span class="color-verde-principal">Express</span></router-link>   
  
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="icon-Menu"></span>
@@ -10,23 +10,15 @@
     <ul class="navbar-nav ml-auto">
       
       <li class="nav-item ml-4">
-       <router-link data-toggle="collapse" data-target=".navbar-collapse.show" to="/persona-perfil" class="text-dark">Mi Perfil</router-link>
-      </li>
-
-      <li class="nav-item ml-4">
-       <router-link data-toggle="collapse" data-target=".navbar-collapse.show" to="/insumos" class="text-dark">Insumos</router-link>
-      </li>
-
-      <li class="nav-item ml-4">
        <router-link data-toggle="collapse" data-target=".navbar-collapse.show" to="/categorias" class="text-dark">Categorías</router-link>
       </li>
 
       <li class="nav-item ml-4">
-       <router-link data-toggle="collapse" data-target=".navbar-collapse.show" to="/productos" class="text-dark">Productos</router-link>
+       <router-link data-toggle="collapse" data-target=".navbar-collapse.show" to="/vendedores" class="text-dark">Vendedores</router-link>
       </li>
 
       <li class="nav-item ml-4">
-       <router-link data-toggle="collapse" data-target=".navbar-collapse.show" to="/persona-perfil" class="text-dark">Pedidos</router-link>
+       <router-link data-toggle="collapse" data-target=".navbar-collapse.show" to="/clientes" class="text-dark">Clientes</router-link>
       </li>
   
       <li class="nav-item ml-4">

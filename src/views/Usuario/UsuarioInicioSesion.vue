@@ -1,8 +1,8 @@
 <template>
     <div class="text-center container-inicio-sesion">
         <Mensaje :mensaje="mensaje"/>
-        <h1><span>So</span><span class="color-verde-principal">Mar</span></h1>
-        <p>Iniciar sesión</p>
+        <h1><span>Coti</span><span class="color-verde-principal">Express</span></h1>
+        <p class="mt-4">Iniciar sesión</p>
         <div class="d-flex justify-content-center align-items-center container">
             <div class="row">
                 <form @submit.prevent="iniciarSesion()" class="formulario">
@@ -36,7 +36,7 @@ export default {
        }
     },
     methods:{
-        ...mapActions(['guardarUsuario', 'cerrarSesion']),
+        ...mapActions(['guardarUsuario', 'guardarInfo', 'cerrarSesion']),
         crearMensaje(contenido, color){
             this.mensaje.ver = true;
             this.mensaje.contenido = contenido
@@ -47,22 +47,48 @@ export default {
             .then((respuesta)=>{
                 if(respuesta.status === 200){                    
                     this.usuarioIngresado = respuesta.data;
-                    this.guardarUsuarioIngresado();
-                    this.$router.push({ name: 'PersonaPerfil'})
+                    if(this.usuarioIngresado.tipo == 1){
+                        this.guardarInfoCliente();
+                    }else{
+                        this.guardarInfoVendedor();
+                    }
                 }
             })
             .catch((error) => {
               this.crearMensaje(error.response.data.mensaje, 'danger')
             })
         },
-        guardarUsuarioIngresado(){
-            if(this.usuarioIngresado.username === 'admin'){
-                this.usuarioIngresado.tipo = 'administrador'
-            }else{
-                this.usuarioIngresado.tipo = 'cliente';
-            }
-            this.guardarUsuario(this.usuarioIngresado)
-        }
+        guardarInfoVendedor(){
+            this.axios.get('vendedores/' + this.usuarioIngresado.codigo)
+            .then(respuesta =>{
+                if(respuesta.status === 200){
+                  this.usuarioIngresado.codigo_cliente = null,
+                  this.usuarioIngresado.codigo_vendedor = respuesta.data.codigo;
+                  this.usuarioIngresado.codigo_empresa = respuesta.data.codigo_empresa;
+                  this.usuarioIngresado.estado = respuesta.data.estado;
+                  this.guardarUsuario(this.usuarioIngresado);                
+                  this.$router.push({ name: 'Productos'})
+                }
+            })
+            .catch((error)=>{
+                this.crearMensaje(error.response.data.mensaje, 'danger')
+            })
+        },
+        guardarInfoCliente(){
+            this.axios.get('clientes/' + this.usuarioIngresado.codigo)
+            .then(respuesta =>{
+                if(respuesta.status === 200){
+                  this.usuarioIngresado.codigo_vendedor = null;
+                  this.usuarioIngresado.codigo_cliente = respuesta.data.codigo;
+                  this.usuarioIngresado.estado = respuesta.data.estado;
+                  this.guardarUsuario(this.usuarioIngresado);
+                  this.$router.push({ name: 'Catalogo'})
+                }
+            })
+            .catch((error)=>{
+                this.crearMensaje(error.response.data.mensaje, 'danger')
+            })
+        },
     },
     components:{
         Mensaje

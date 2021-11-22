@@ -16,10 +16,10 @@
       <div class="col-md-4">
         <div class="card mb-4 card-nosotros">
           <div class="card-header bg-transparent">
-            <img src="../../assets/johnny.jpg" alt="foto-johnny" width="220px" height="250px">
+            <img src="../../assets/esteban.jpeg" alt="foto-johnny" width="220px" height="250px">
           </div>
           <div class="card-body">
-            <h5><b>Johnny Alexander Quintero</b></h5>
+            <h5><b>Esteban</b></h5>
             <p>Desarrollador backend</p>
           </div>
         </div>        
@@ -27,10 +27,10 @@
       <div class="col-md-4">
         <div class="card">
           <div class="card-header">
-            <img src="../../assets/andrey.jpg" alt="foto-andrey" width="60.5%">
+            <img src="../../assets/alfredo.jpeg" alt="foto-andrey" width="200px" height="250px">
           </div>
           <div class="card-body"> 
-            <h5><b>Brayam Andrey Oliveros</b></h5>
+            <h5><b>Alfredo</b></h5>
             <p>Desarrollador fullstack</p>
           </div>
         </div>           

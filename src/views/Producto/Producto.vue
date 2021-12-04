@@ -61,7 +61,8 @@ export default {
             producto:{codigoCategoria:1},
             categorias:[],
             productos:[],
-            urlSinFoto: this.axios.defaults.baseURL + '/imagenes/sin-foto.png'
+            urlSinFoto: this.axios.defaults.baseURL + '/imagenes/sin-foto.png',
+            vendedorProducto: {}
         }
     },
     created(){
@@ -136,19 +137,28 @@ export default {
                 this.axios.post('productos', this.producto)
                 .then(respuesta =>{
                     console.log(respuesta)
-                    window.location = '/productos'
+                    this.guardarVendedorProducto(respuesta.data.codigo)
                 })
             }else{
                 alert('Seleccione una foto')
             }
         },
         verProductos(){
-            this.axios.get('productos/filtro-vendedor' + this.usuario.codigo_vendedor)
+            this.axios.get('productos/filtro-vendedor/' + this.usuario.codigo_vendedor)
             .then(respuesta=>{
-                console.log(respuesta.data)
+                console.log(respuesta.data, 'PRODUCTOS  FILTRADOS POR VENDEDOR')
                 this.productos = respuesta.data;
             })
         },
+        guardarVendedorProducto(codigoProductoGuardado){
+            this.vendedorProducto.codigoVendedor = JSON.parse(localStorage.getItem('usuario')).codigo_vendedor
+            this.vendedorProducto.codigoProducto = codigoProductoGuardado
+            this.axios.post('vendedor-producto', this.vendedorProducto)
+            .then(respuesta =>{
+                this.guardarVendedorProducto(respuesta.data.codigo)
+                window.location = '/productos'
+            })
+        }
     },
     components:{
         TablaProductos

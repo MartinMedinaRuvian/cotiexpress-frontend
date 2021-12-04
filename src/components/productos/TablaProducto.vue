@@ -1,6 +1,6 @@
 <template>
     <div class="mt-5">
-          <table class="table">
+          <table class="table" v-if="productos.length > 0">
                <thead class="thead-light">
                     <tr>
                          <th scope="col">Código</th>
@@ -25,6 +25,9 @@
                     </tr>
                </tbody>
           </table>
+          <div class="text-center" v-else>
+               <h3>Sin productos, te invitamos a registrar tu primer producto 🤗</h3>
+          </div>
     </div>
 </template>
 <script>

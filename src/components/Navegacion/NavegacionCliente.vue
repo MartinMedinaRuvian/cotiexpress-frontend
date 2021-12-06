@@ -18,7 +18,7 @@
       </li>
 
       <li class="nav-item ml-4" v-if="usuario.estado === '1'">
-       <router-link data-toggle="collapse" data-target=".navbar-collapse.show" to="/productos" class="text-dark">Mis Pedidos</router-link>
+       <router-link data-toggle="collapse" data-target=".navbar-collapse.show" to="/pedidos-cliente" class="text-dark">Mis Pedidos <span class="numero-pedidos">{{pedidosPersona.length}}</span></router-link>
       </li>
   
       <li class="nav-item ml-4">
@@ -33,10 +33,18 @@
 import {mapActions, mapGetters} from 'vuex'
 export default {
   computed:{
-    ...mapGetters(['usuario'])
+    ...mapGetters(['usuario', 'pedidosPersona'])
   },
   methods:{
     ...mapActions(['cerrarSesion'])
   }
 }
 </script>
+<style scoped>
+  .numero-pedidos{
+    background-color: #00A82D;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+  }
+</style>

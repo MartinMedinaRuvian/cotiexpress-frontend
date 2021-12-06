@@ -7,7 +7,6 @@
                          <th scope="col">Nombres</th>
                          <th scope="col">Apellidos</th>
                          <th scope="col">Identificación</th>
-                         <th scope="col">Acción</th>
                     </tr>
                </thead>
                <tbody>
@@ -16,9 +15,6 @@
                          <td>{{ cliente.nombres }}</td>
                          <td>{{ cliente.apellidos }}</td>
                          <td>{{ cliente.identificacion }}</td>
-                         <td>
-                              <button class="btn btn-outline-warning ml-2" @click="cambiarEstado(cliente)"><span class="icon-pencil"></span></button>
-                         </td>
                     </tr>
                </tbody>
           </table>

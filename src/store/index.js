@@ -6,11 +6,26 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    usuario: localStorage.getItem('usuario') !== null ? JSON.parse(localStorage.getItem('usuario')) : null
+    usuario: localStorage.getItem('usuario') !== null ? JSON.parse(localStorage.getItem('usuario')) : null,
+    pedidosPersona: []
   },
   mutations: {
     obtenerUsuario(state, payload){   
       state.usuario = payload;
+    },
+    agregarPedidoPersona(state, payload){
+      state.pedidosPersona.push(payload)
+    },
+    eliminarPedidoPersona(state, payload){
+      const pedidos = state.pedidosPersona
+      for(let i of pedidos){
+          if(i.producto.descripcion === payload.producto.descripcion){
+              let indice = pedidos.indexOf(i)
+              pedidos.splice(indice, 1)
+              break
+          }
+      }
+      state.pedidosPersona = pedidos
     }
   },
   actions: {
@@ -27,6 +42,12 @@ export default new Vuex.Store({
       commit('obtenerUsuario', usuarioGuardar);
       localStorage.setItem('usuario', JSON.stringify(usuarioGuardar));
     },
+    agregarPedidoPersona({commit}, payload){
+      commit('agregarPedidoPersona', payload);
+    },
+    eliminarPedidoPersona({commit}, payload){
+      commit('eliminarPedidoPersona', payload)
+    },
     cerrarSesion({commit}){
       commit('obtenerUsuario', null);
       localStorage.removeItem('usuario');
@@ -36,6 +57,9 @@ export default new Vuex.Store({
   getters:{
     usuario(state){
       return state.usuario
+    },
+    pedidosPersona(state){
+      return state.pedidosPersona
     }
   },
   modules: {

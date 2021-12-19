@@ -15,6 +15,9 @@
                          <td>{{ cliente.nombres }}</td>
                          <td>{{ cliente.apellidos }}</td>
                          <td>{{ cliente.identificacion }}</td>
+                         <td>
+                             <button class="btn btn-outline-warning" @click="cambiarEstado(cliente)"><span class="icon-Lapiz"></span></button>
+                         </td>
                     </tr>
                </tbody>
           </table>

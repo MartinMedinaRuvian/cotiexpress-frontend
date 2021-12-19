@@ -1,20 +1,50 @@
 <template>
     <div class="text-center">
         <div v-if="usuario.estado === '1'">
+                        <!-- Button trigger modal -->
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalGuardarProducto">
+                Guardar un nuevo producto
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="modalGuardarProducto" tabindex="-1" role="dialog" aria-labelledby="modalGuardarProducto" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                <div class="modal-header bg-success">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Guardar Producto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
             <form @submit.prevent>
             <div class="form group">
                 <label for="descripcion">Descripción:</label>
                 <input type="text" placeholder="Descripción" v-model="producto.descripcion" class="form-control">
             </div>
 
+            <div class="form group row mt-3">
+                <div class="col-md-6">
+                    <label for="descripcion">Cantidad:</label>
+                    <input type="text" placeholder="Cantidad" v-model="producto.cantidad" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="precioUnidad">Precio Unidad:</label>
+                            <input type="text" placeholder="Precio unidad" v-model="producto.precioUnidad" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+
             <div class="form-group mt-4">
                 <h5>Fotografía producto:</h5>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12 col-lg-12">
                         <input type="file" class="form-control" name="file" id="file" @change="verImagen" accept="image/*" required>
                         <input @click="subirArchivo()" type="button" value="Seleccionar" class="form-control btn btn-success mt-3" v-if="urlImg === ''">                      
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12 col-lg-12 mt-3">
                         <h5>Imagen seleccionada:</h5>
                         <img  alt="imagen" id="imagenPrevisualizacion" width="200px" height="200px" :src="urlSinFoto">   
                         <button class="btn btn-danger form-control" @click="eliminarImagen()" v-if="urlImg !==''">Eliminar</button>  
@@ -23,14 +53,7 @@
             </div>
 
             <div class="row mt-5">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="precioUnidad">Precio Unidad:</label>
-                         <input type="text" placeholder="Precio unidad" v-model="producto.precioUnidad" class="form-control">
-                    </div>
-
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-12 col-lg-12">
                     <div class="form-group">
                         <label for="select">Seleccione categoria:</label>
                         <select id="select" class="form-select form-control" aria-label="Default select example" v-if="categorias.length > 0" v-model="producto.codigoCategoria">
@@ -39,8 +62,19 @@
                     </div>
                 </div>
             </div>
-            <input type="button" class="btn btn-success form-control" value="Guardar" @click="guardarProducto()">
-        </form>
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-secondary form-control" data-dismiss="modal">Cancelar</button>
+                </div>
+                <div class="col-md-6">
+                    <input type="button" class="btn btn-success form-control" value="Guardar" @click="guardarProducto()">
+                </div>
+            </div>
+             </form>
+            </div>
+            </div>
+        </div>
+        </div>
 
         <TablaProductos :productos="productos" />
         </div>

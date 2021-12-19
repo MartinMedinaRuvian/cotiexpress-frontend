@@ -16,14 +16,14 @@
                     <input id="txtbuscar" type="text" class="form-control" placeholder="Ingrese descripción del producto" v-model="descripcion" @keypress.enter="verProductos()">
                 </div>
             </div>
-        </div>
-        <div v-if="usuario.estado === '2'">
-            <h3>Su cuenta se encuentra desactivada. Pongase en contacto con el Admin</h3>
-        </div>
         <div class="row">
             <div class="col-md-6" v-for="producto in productos" :key="producto.index">
                 <TarjetaProducto :producto="producto"/>
             </div>
+        </div>
+        </div>
+        <div v-else>
+            <h3>Su cuenta se encuentra desactivada. Pongase en contacto con el Admin</h3>
         </div>
     </div>
 </template>

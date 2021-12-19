@@ -9,8 +9,8 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="cantidad">Ingrese cantidad a comprar:</label>
-            <input id="cantidad" type="number" class="form-control" placeholder="cantidad" min="1" v-model="cantidad" @change="calcularPrecioTotal()">
+            <label for="cantidad">Cantidad a comprar:</label>
+            <h2>{{cantidad}}</h2>
         </div>
         <div class="form-group ml-5 mt-3">
             <label for="precio-unidad">Precio unidad:</label>
@@ -18,7 +18,7 @@
         </div>
         <div class="form-group ml-5 mt-3">
             <label for="precio-unidad">Precio total:</label>
-            <p id="precio-unidad" class="precio-unidad">$ <b>{{precioTotal}}</b></p>
+            <p id="precio-unidad" class="precio-unidad">$ <b>{{this.pedido.producto.total}}</b></p>
         </div>
         <button class="btn btn-danger ml-5" @click="eliminarPedido()">X</button>
     </div>
@@ -31,9 +31,8 @@ export default {
     },
     data(){
         return{
-            cantidad: 1,
-            precioUnidad: this.pedido.producto.precio_unidad,
-            precioTotal: this.pedido.producto.precio_unidad,
+            cantidad: this.pedido.producto.cantidadComprar,
+            precioUnidad: this.pedido.producto.precio_unidad
         }
     },
     methods:{
@@ -43,7 +42,7 @@ export default {
         },
         calcularPrecioTotal(){
         console.log(this.precioUnidad, 'Precio und')
-           this.precioTotal = this.cantidad * this.precioUnidad
+           this.pedido.producto.total = this.cantidad * this.precioUnidad
         },
         eliminarPedido(){
             this.eliminarPedidoPersona(this.pedido)
@@ -56,11 +55,12 @@ export default {
         align-content: center;
         align-items: center;
         display: flex;
+        flex-wrap: wrap;
         border-radius: 10px;
         padding: 10px;
         margin-top: 10px;
         border: 0.90px solid #00A82D;;
-        height: 220px;
+        height: 250px;
     }
     img{
         border-radius: 10px;
@@ -68,6 +68,7 @@ export default {
         height: 150px;
     }
     .titulo-tarjeta{
+        width: 200px;
         font-size: 20px;
         margin-top: 10px;
         text-align: left;

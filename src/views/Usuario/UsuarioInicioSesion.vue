@@ -20,7 +20,7 @@
         </div>
        <div class="footer-formulario mt-3">
             <p>¿No tiene una cuenta?</p>
-        <router-link data-toggle="collapse" data-target=".navbar-collapse.show" to="/registro" class="color-verde-principal link-crear-cuenta">Crear cuenta</router-link>
+        <router-link data-toggle="collapse" data-target=".navbar-collapse.show" to="/pre-registro" class="color-verde-principal link-crear-cuenta">Crear cuenta</router-link>
        </div>
     </div>
 </template>

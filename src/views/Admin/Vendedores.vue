@@ -25,8 +25,10 @@ export default {
     },
     methods:{
         verVendedores(){
-            let filtro = this.filtro
-            this.axios.get('vendedores/' + filtro)
+            const filtro = {
+                nombres: this.filtro
+            }
+            this.axios.post('vendedores/filtro-nombres', filtro)
             .then(respuesta =>{
                 console.log(respuesta)
                 this.vendedores = respuesta.data

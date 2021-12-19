@@ -7,6 +7,7 @@
                          <th scope="col">Nombres</th>
                          <th scope="col">Apellidos</th>
                          <th scope="col">Identificación</th>
+                         <th scope="col">Cambiar estado</th>
                     </tr>
                </thead>
                <tbody>
@@ -15,6 +16,9 @@
                          <td>{{ vendedor.nombres }}</td>
                          <td>{{ vendedor.apellidos }}</td>
                          <td>{{ vendedor.identificacion }}</td>
+                         <td>
+                             <button class="btn btn-outline-warning" @click="cambiarEstado(vendedor)"><span class="icon-Lapiz"></span></button>
+                         </td>
                     </tr>
                </tbody>
           </table>

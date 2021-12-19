@@ -7,7 +7,7 @@
                          <th scope="col">Descripción</th>
                          <th scope="col">Foto</th>
                          <th scope="col">Precio Unidad</th>
-                         <th scope="col">Categoria</th>
+                         <th scope="col">Cantidad</th>
                          <th scope="col">Acciones</th>
                     </tr>
                </thead>
@@ -17,10 +17,9 @@
                          <td>{{ producto.descripcion }}</td>
                          <td><img :src="verFoto(producto.foto)" :alt="producto.codigo" width="100px" height="100px"></td>
                          <td>{{ producto.precio_unidad }}</td>
-                         <td>{{ producto.codigo_categoria }}</td>
+                         <td>{{ producto.cantidad }}</td>
                          <td>
                               <button class="btn btn-outline-warning" @click="editar(producto)"><span class="icon-Lapiz"></span></button>
-                              <button class="btn btn-outline-danger ml-2" @click="eliminar(producto)"><span class="icon-Papelera"></span></button>
                          </td>
                     </tr>
                </tbody>
@@ -36,9 +35,6 @@ export default {
           productos:[]
      },
      methods:{
-          eliminar(producto){
-               this.$router.push({ name: 'ProductosEliminar', params: { producto }})
-          },
           editar(producto){
                this.$router.push({ name: 'ProductosEditar', params: { producto }})
           },

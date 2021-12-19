@@ -79,9 +79,9 @@ const routes = [
     meta:{requiereAutorizacion:true}
   },
   {
-    path: '/productos-eliminar',
-    name: 'ProductosEliminar',
-    component: () => import('@/views/Producto/ProductoEliminar.vue'),
+    path: '/productos-editar',
+    name: 'ProductosEditar',
+    component: () => import('@/views/Producto/ProductoEditar.vue'),
     props:true,
     meta:{requiereAutorizacion:true}
   },

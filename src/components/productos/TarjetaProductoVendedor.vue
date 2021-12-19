@@ -2,9 +2,7 @@
     <div class="tarjeta">
         <img :src="verFoto(producto.foto)" :alt="producto.codigo" width="100px" height="100px">
         <h6 class="titulo-tarjeta">{{producto.descripcion}}</h6>
-        <p class="precio">Precio: $ <b>{{producto.precio_unidad}}</b></p>
-        <h6 class="titulo-empresa" @click="verCatalogoVendedor(producto.empresa)">De {{producto.empresa.nombre}}</h6>
-       
+        <p class="precio">Precio: $ <b>{{producto.precio_unidad}}</b></p>    
         <div class="contenedor-pedir row">
             <div class="col-md-6">
                 <label for="cantidad" class="titulo-cantidad">Cantidad:</label>
@@ -42,9 +40,7 @@ export default {
                 foto: this.producto.foto,
                 precio_unidad: this.producto.precio_unidad,
                 cantidadComprar: this.cantidad,
-                stock: this.producto.cantidad,
-                total: this.producto.precio_unidad * this.cantidad,
-                empresa: this.producto.empresa
+                total: this.producto.precio_unidad * this.cantidad
             }
             const pedidoPersona = {
                 producto: infoProducto
@@ -63,7 +59,7 @@ export default {
         padding: 10px;
         margin-top: 10px;
         border: 0.90px solid #00A82D;;
-        height: 545px;
+        height: 520px;
     }
     img{
         border-radius: 10px;

@@ -12,6 +12,9 @@
                         <input type="text" placeholder="Direccion" class="form-control" v-model="empresa.direccion" required>
                     </div>
                     <div class="form-group">
+                        <input type="number" placeholder="Teléfono" class="form-control" v-model="empresa.telefono">
+                    </div>
+                    <div class="form-group">
                         <button class="btn btn-success" @click="actualizar()">Actualizar</button>
                     </div>
                 </form>

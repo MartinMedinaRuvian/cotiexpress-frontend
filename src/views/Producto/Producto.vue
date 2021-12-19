@@ -75,7 +75,7 @@
             </div>
         </div>
         </div>
-
+        <h2 class="mt-5" v-if="productos.length > 0">Mis productos</h2>
         <TablaProductos :productos="productos" />
         </div>
         <div v-if="usuario.estado === '2'">

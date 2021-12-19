@@ -15,9 +15,6 @@
                         <input type="number" placeholder="Identificacion" class="form-control" v-model="vendedor.identificacion" disabled>
                     </div>
                     <div class="form-group">
-                        <input type="number" placeholder="Teléfono" class="form-control" v-model="vendedor.telefono">
-                    </div>
-                    <div class="form-group">
                         <input type="email" placeholder="Email" class="form-control" v-model="vendedor.email">
                     </div>
                     <div class="form-group">

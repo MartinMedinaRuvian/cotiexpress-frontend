@@ -3,6 +3,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h6 class="titulo-tarjeta">{{pedido.producto.descripcion}}</h6>
+                <h6>De: {{pedido.producto.empresa.nombre}}</h6>
             </div>
             <div class="col-md-12">
                 <img :src="verFoto(pedido.producto.foto)" :alt="pedido.producto.codigo" width="100px" height="100px">
@@ -24,7 +25,7 @@
     </div>
 </template>
 <script>
-import {mapActions, mapGetters} from 'vuex'
+import {mapActions} from 'vuex'
 export default {
     props:{
         pedido:Object,
@@ -47,7 +48,9 @@ export default {
         eliminarPedido(){
             this.eliminarPedidoPersona(this.pedido)
             this.$emit("calcularTotalPedido");
-        },
+            this.$emit("esElMismoVendedor");
+            this.$emit("cotizar");
+        }
     }
 }
 </script>
@@ -61,7 +64,7 @@ export default {
         padding: 10px;
         margin-top: 10px;
         border: 0.90px solid #00A82D;;
-        height: 250px;
+        height: 295px;
     }
     img{
         border-radius: 10px;

@@ -120,6 +120,13 @@ const routes = [
     component: () => import('@/views/Pedidos/PedidosCliente.vue'),
     props:true,
     meta:{requiereAutorizacion:true}
+  },
+  {
+    path: '/productos-por-vendedor',
+    name: 'ProductosPorVendedor',
+    component: () => import('@/views/Vendedor/VendedorProducto.vue'),
+    props:true,
+    meta:{requiereAutorizacion:true}
   }
 ]
 

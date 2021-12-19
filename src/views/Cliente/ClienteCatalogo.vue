@@ -16,10 +16,13 @@
                     <input id="txtbuscar" type="text" class="form-control" placeholder="Ingrese descripción del producto" v-model="descripcion" @keypress.enter="verProductos()">
                 </div>
             </div>
-        <div class="row">
+        <div class="row" v-if="productos.length > 0">
             <div class="col-md-6" v-for="producto in productos" :key="producto.index">
                 <TarjetaProducto :producto="producto"/>
             </div>
+        </div>
+        <div v-else class="mt-5">
+            <h4>No se encontraron productos con la categoría seleccionada 😔</h4>
         </div>
         </div>
         <div v-else>
@@ -36,7 +39,8 @@ export default {
             categorias:[],
             codigoCategoria: 1,
             productos:[],
-            descripcion:''
+            descripcion:'',
+            empresa:{}
         }
     },
     created(){
@@ -59,7 +63,22 @@ export default {
             this.axios.post('productos/filtro-categoria/' + this.codigoCategoria, descripcion)
             .then(respuesta=>{
                 this.productos = respuesta.data;
+                this.verEmpresa()
             })
+        },
+        verEmpresa(){
+            const productos = this.productos;
+            const productosEmpresa = []
+            for(let producto of productos){
+                this.axios.get('vendedores/buscar-empresa/' + producto.codigo)
+                .then(respuesta=>{
+                    console.log(respuesta.data, 'RESPUESTA EMPRESA')
+                    producto.empresa = respuesta.data
+                    productosEmpresa.push(producto)
+                })
+            }
+            this.productos = productosEmpresa
+            console.warn(this.productos, 'PRODUCTOS')
         }
     },
     components:{

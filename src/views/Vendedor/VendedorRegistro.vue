@@ -40,15 +40,8 @@
             <input
               type="number"
               placeholder="Identificacion"
-              class="form-control col-md-6"
+              class="form-control col-md-12"
               v-model="vendedor.identificacion"
-              required
-            />
-            <input
-              type="text"
-              placeholder="Telefono"
-              class="form-control col-md-6"
-              v-model="vendedor.telefono"
               required
             />
           </div>
@@ -60,12 +53,19 @@
               v-model="vendedor.email"
             />
           </div>
-          <div class="form-group">
+          <div class="form-group row mb-3">
             <input
               type="text"
               placeholder="Nombre de la empresa"
-              class="form-control"
+              class="form-control col-md-6"
               v-model="empresa.nombre"
+            />
+            <input
+              type="text"
+              placeholder="Telefono"
+              class="form-control col-md-6"
+              v-model="empresa.telefono"
+              required
             />
           </div>
           <div class="form-group">

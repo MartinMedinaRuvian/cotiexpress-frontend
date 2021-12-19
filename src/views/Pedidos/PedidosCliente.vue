@@ -2,10 +2,13 @@
     <div>
        <div v-if="pedidosPersona.length > 0">
             <div class="col-md-12" v-for="pedido in pedidosPersona" :key="pedido.index">
-                <TarjetaPedidoCliente :pedido="pedido"/>
+                <TarjetaPedidoCliente :pedido="pedido" @calcularTotalPedido="calcularTotalPedido()"/>
             </div>
             <div class="col-md-12 total">
                 <h3>Total: $ <span class="total-pedido" @click="calcularTotalPedido()">{{total}}</span></h3>
+            </div>
+            <div class="col-md-12 comprar">
+                <button class="btn btn-success">Comprar</button>
             </div>
        </div>
        <div v-else class="text-center">
@@ -47,6 +50,10 @@ export default {
 <style scoped>
     .total{
         margin-top: 40px;
+        text-align: right;
+    }
+    .comprar{
+        margin-top: 10px;
         text-align: right;
     }
     .total-pedido{

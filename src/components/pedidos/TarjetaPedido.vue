@@ -46,6 +46,7 @@ export default {
         },
         eliminarPedido(){
             this.eliminarPedidoPersona(this.pedido)
+            this.$emit("calcularTotalPedido");
         },
     }
 }

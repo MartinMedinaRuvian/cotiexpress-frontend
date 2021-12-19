@@ -7,16 +7,17 @@
         <div class="contenedor-pedir row">
             <div class="col-md-6">
                 <label for="cantidad" class="titulo-cantidad">Cantidad:</label>
-            <input type="number" placeholder="Cantidad" class="input-cantidad" v-model="cantidad" min="1">
+            <input type="number" placeholder="Cantidad" class="input-cantidad" v-model="cantidad" min="1" :max="producto.cantidad" :disabled="pedidosPersona.indexOf(pedidosPersona.find(pedido => pedido.producto.descripcion === producto.descripcion)) >= 0">
+            <span><p>{{producto.cantidad}} UND disponibles.</p></span>
             </div>
             <div class="col-md-6">
-                <button class="btn btn-success boton" @click="pedirProducto()">Pedir</button>
+                <button class="btn btn-success boton" @click="pedirProducto()" :disabled="pedidosPersona.indexOf(pedidosPersona.find(pedido => pedido.producto.descripcion === producto.descripcion)) >= 0">Pedir</button>
             </div>
         </div>
     </div>
 </template>
 <script>
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 export default {
     props:{
         producto:Object
@@ -29,6 +30,9 @@ export default {
     },
     created(){
         this.verEmpresa()
+    },
+    computed:{
+        ...mapGetters(['pedidosPersona'])
     },
     methods:{
         ...mapActions(['agregarPedidoPersona']),
@@ -64,7 +68,7 @@ export default {
         padding: 10px;
         margin-top: 10px;
         border: 0.90px solid #00A82D;;
-        height: 530px;
+        height: 540px;
     }
     img{
         border-radius: 10px;

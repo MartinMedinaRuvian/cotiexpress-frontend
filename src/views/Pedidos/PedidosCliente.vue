@@ -11,7 +11,9 @@
                 <button class="btn btn-success">Comprar</button>
             </div>
             <div class="col-md-12 comprar">
-                <a :href="urlWhatsapp" target="_blank" class="btn btn-primary" :disabled="!elMismoVendedor">{{!elMismoVendedor ? 'Solo se puede cotizar cuando los productos son de un mismo vendedor' : 'Cotizar Productos'}}</a>
+                <div v-if="elMismoVendedor">
+                    <a :href="urlWhatsapp" target="_blank" class="btn btn-primary">Cotizar Productos</a>
+                </div>
             </div>
        </div>
        <div v-else class="text-center">
@@ -44,33 +46,39 @@ export default {
     },
     methods:{
         calcularTotalPedido(){
-            let total = 0;
-            let pedidos = this.pedidosPersona;
-            for(let pedido of pedidos){
-                total += pedido.producto.total
+            if(this.pedidosPersona.length > 0){
+                let total = 0;
+                let pedidos = this.pedidosPersona;
+                for(let pedido of pedidos){
+                    total += pedido.producto.total
+                }
+                this.total = total
             }
-            this.total = total
         },
         esElMismoVendedor(){
-            const primerPedido = this.pedidosPersona[0];
-            const pedidos = this.pedidosPersona
-            for(let pedido of pedidos){
-                if(primerPedido.producto.empresa.nombre !== pedido.producto.empresa.nombre){
-                    this.elMismoVendedor = false;
-                    break;
-                }else{
-                    this.elMismoVendedor = true;
+            if(this.pedidosPersona.length > 0){
+                const primerPedido = this.pedidosPersona[0];
+                const pedidos = this.pedidosPersona
+                for(let pedido of pedidos){
+                    if(primerPedido.producto.empresa.nombre !== pedido.producto.empresa.nombre){
+                        this.elMismoVendedor = false;
+                        break;
+                    }else{
+                        this.elMismoVendedor = true;
+                    }
                 }
             }
         },
         cotizar(){
-            const telefonoEmpresa = this.pedidosPersona[0].producto.empresa.telefono
-            const pedidos = this.pedidosPersona
-            let mensaje = 'Para cotizar los siguientes productos: '
-            for(let pedido of pedidos){
-                mensaje += pedido.producto.cantidadComprar + ' ' + pedido.producto.descripcion + ' con precio de $ ' + pedido.producto.precio_unidad + '. '
-            } 
-            this.urlWhatsapp = "https://api.whatsapp.com/send?phone=+57" + telefonoEmpresa + "&text=" + mensaje;
+            if(this.pedidosPersona.length > 0){
+                const telefonoEmpresa = this.pedidosPersona[0].producto.empresa.telefono
+                const pedidos = this.pedidosPersona
+                let mensaje = 'Para cotizar los siguientes productos: '
+                for(let pedido of pedidos){
+                    mensaje += pedido.producto.cantidadComprar + ' ' + pedido.producto.descripcion + ' con precio de $ ' + pedido.producto.precio_unidad + '. '
+                } 
+                this.urlWhatsapp = "https://api.whatsapp.com/send?phone=+57" + telefonoEmpresa + "&text=" + mensaje;
+            }
         }
     }
 }

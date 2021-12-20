@@ -34,7 +34,8 @@ export default {
     methods:{
         verProductos(){
             if(this.vendedor !== undefined){
-                this.axios.get('productos/filtro-vendedor/' + this.vendedor.codigo)
+                console.log(this.vendedor.codigo, 'CODIGO')
+                this.axios.get('productos/filtro-empresa/' + this.vendedor.codigo)
                 .then(respuesta=>{
                     console.log(respuesta.data, 'PRODUCTOS  FILTRADOS POR VENDEDOR')
                     this.productos = respuesta.data;

@@ -8,7 +8,7 @@
                 <h3>Total: $ <span class="total-pedido" @click="calcularTotalPedido()">{{total}}</span></h3>
             </div>
             <div class="col-md-12 comprar">
-                <button class="btn btn-success">Comprar</button>
+                <button class="btn btn-success" @click="comprar()">Comprar</button>
             </div>
             <div class="col-md-12 comprar">
                 <div v-if="elMismoVendedor">
@@ -79,6 +79,9 @@ export default {
                 } 
                 this.urlWhatsapp = "https://api.whatsapp.com/send?phone=+57" + telefonoEmpresa + "&text=" + mensaje;
             }
+        },
+        comprar(){
+            this.$router.push({ name: 'PagoPedidoCliente' })
         }
     }
 }

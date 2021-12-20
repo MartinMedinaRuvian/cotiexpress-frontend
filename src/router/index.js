@@ -127,6 +127,13 @@ const routes = [
     component: () => import('@/views/Vendedor/VendedorProducto.vue'),
     props:true,
     meta:{requiereAutorizacion:true}
+  },
+  {
+    path: '/pago-pedido-cliente',
+    name: 'PagoPedidoCliente',
+    component: () => import('@/views/Pago/PagoPedidoCliente.vue'),
+    props:true,
+    meta:{requiereAutorizacion:true}
   }
 ]
 

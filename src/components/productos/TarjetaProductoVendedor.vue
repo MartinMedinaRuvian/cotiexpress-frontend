@@ -10,7 +10,7 @@
             <span><p>{{producto.cantidad}} UND disponibles.</p></span>
             </div>
             <div class="col-md-6">
-                <button class="btn btn-success boton" @click="pedirProducto()" :disabled="pedidosPersona.indexOf(pedidosPersona.find(pedido => pedido.producto.descripcion === producto.descripcion)) >= 0">Pedir</button>
+                <button class="btn btn-success boton" @click="pedirProducto()" disabled>Pedir</button>
             </div>
         </div>
     </div>
@@ -40,7 +40,9 @@ export default {
                 foto: this.producto.foto,
                 precio_unidad: this.producto.precio_unidad,
                 cantidadComprar: this.cantidad,
-                total: this.producto.precio_unidad * this.cantidad
+                stock: this.producto.cantidad,
+                total: this.producto.precio_unidad * this.cantidad,
+                empresa: this.producto.empresa
             }
             const pedidoPersona = {
                 producto: infoProducto

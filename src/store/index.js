@@ -26,6 +26,9 @@ export default new Vuex.Store({
           }
       }
       state.pedidosPersona = pedidos
+    },
+    eliminarTodosLosPedidos(state){
+      state.pedidosPersona = []
     }
   },
   actions: {
@@ -47,6 +50,9 @@ export default new Vuex.Store({
     },
     eliminarPedidoPersona({commit}, payload){
       commit('eliminarPedidoPersona', payload)
+    },
+    eliminarTodosLosPedidos({commit}){
+      commit('eliminarTodosLosPedidos')
     },
     cerrarSesion({commit}){
       commit('obtenerUsuario', null);

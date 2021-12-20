@@ -4,15 +4,19 @@
         <h6 class="titulo-tarjeta">{{producto.descripcion}}</h6>
         <p class="precio">Precio: $ <b>{{producto.precio_unidad}}</b></p>
         <h6 class="titulo-empresa" @click="verCatalogoVendedor(producto.empresa)">De {{producto.empresa.nombre}}</h6>
-       
         <div class="contenedor-pedir row">
             <div class="col-md-6">
                 <label for="cantidad" class="titulo-cantidad">Cantidad:</label>
-            <input type="number" placeholder="Cantidad" class="input-cantidad" v-model="cantidad" min="1" :max="producto.cantidad" :disabled="pedidosPersona.indexOf(pedidosPersona.find(pedido => pedido.producto.descripcion === producto.descripcion)) >= 0">
-            <span><p>{{producto.cantidad}} UND disponibles.</p></span>
+            <input type="number" placeholder="Cantidad" class="input-cantidad" v-model="cantidad" min="1" :max="producto.cantidad" :disabled="producto.cantidad <= 0 || (pedidosPersona.indexOf(pedidosPersona.find(pedido => pedido.producto.descripcion === producto.descripcion)) >= 0)">
+            <div v-if="producto.cantidad > 0">
+                <span><p>{{producto.cantidad}} UND disponibles.</p></span>
+            </div>
+            <div v-else>
+                <span><p>Sin stock disponible😔</p></span>
+            </div>
             </div>
             <div class="col-md-6">
-                <button class="btn btn-success boton" @click="pedirProducto()" :disabled="pedidosPersona.indexOf(pedidosPersona.find(pedido => pedido.producto.descripcion === producto.descripcion)) >= 0">Pedir</button>
+                <button class="btn btn-success boton" @click="pedirProducto()" :disabled="producto.cantidad <= 0 || (pedidosPersona.indexOf(pedidosPersona.find(pedido => pedido.producto.descripcion === producto.descripcion)) >= 0)">Pedir</button>
             </div>
         </div>
     </div>
@@ -38,6 +42,7 @@ export default {
         },
         pedirProducto(){
             const infoProducto = {
+                codigo: this.producto.codigo,
                 descripcion: this.producto.descripcion,
                 foto: this.producto.foto,
                 precio_unidad: this.producto.precio_unidad,
